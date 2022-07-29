@@ -19,7 +19,7 @@ export default function App() {
         <PersistGate persistor={persistor} loading={<Loading />}>
           <View style={styles.container}>
             <Stack.Navigator
-              initialRouteName="Notes"
+              initialRouteName="Notas"
               screenOptions={{
                 headerTitleAlign: "center",
                 headerStyle: {
@@ -32,10 +32,10 @@ export default function App() {
                 },
               }}>
               <Stack.Screen
-                name="Notes"
+                name="Notas"
                 component={Notes}
                 options={{
-                  title: "Notes",
+                  title: "Notas",
                 }}
               />
             </Stack.Navigator>

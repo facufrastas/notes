@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "Notes",
-    "slug": "notes",
+    "slug": "mabelNotes",
+    "owner": "facufrastas",
     "icon": "./src/assets/Icon.png",
     "ios": {
       "bundleIdentifier": "com.notes.app",

@@ -1,5 +1,3 @@
-import axios from "axios";
-import { URI } from "..";
 import { GET_NOTES, GET_NOTES_SUCCESSFULLY, SET_NEW_NOTE, SET_EDIT_NOTE, DELETE_EDIT_NOTE } from "../../redux/actions/notes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
