@@ -5,8 +5,12 @@ import Note from "../../components/Note";
 import { useIsFocused } from "@react-navigation/native";
 import styles from "../../assets/styles/activities/Notes";
 
-const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, setNewNote, editNote, idEditNote, unsetEditNote, searchNote }) => {
+const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, setNewNote, editNote, unsetEditNote, searchNote }) => {
   const isFocused = useIsFocused();
+
+  useEffect(() => {
+    getNotes();
+  }, []);
 
   // Update list (Get) after a Post, Put or Delete of a note
   useEffect(() => {
@@ -63,14 +67,14 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
             <View style={styles.notes__extraMarginButton}>
               <AppButton title={"Buscar"} onPress={() => searchNote({ noteString: searchNoteInput })} />
             </View>
-            <View style={styles.notes__extraMarginButton}>
+            {/* <View style={styles.notes__extraMarginButton}>
               <AppButton
                 title={"CBU"}
                 onPress={() => {
                   setShowFavourites(true);
                 }}
               />
-            </View>
+            </View> */}
             <View style={styles.notes__extraMarginButton}>
               <AppButton
                 title={"Todas las Notas"}
@@ -107,7 +111,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
               }}
             />
           ) : null}
-          {editNote && note ? <AppButton title={"Guardar Cambios"} onPress={() => updateNote({ id: idEditNote, note, favourite }).then(setNote("")).then(setFavourite(false))} /> : null}
+          {editNote && note ? <AppButton title={"Guardar Cambios"} onPress={() => updateNote({ id: editNote.id, note, favourite }).then(setNote("")).then(setFavourite(false))} /> : null}
           {editNote && editNote.note && editNote.note.length > 0 ? null : (
             <AppButton
               title={"Agregar Nota"}

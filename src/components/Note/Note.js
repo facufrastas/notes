@@ -19,7 +19,7 @@ const Note = ({ note, index, setEditNote, deleteNote }) => {
       <View style={styles.note__crudButtons}>
         <TouchableOpacity
           onPress={() => {
-            setEditNote({ editNote: note, id: note._id });
+            setEditNote({ editNote: note });
           }}>
           <Text style={styles.note__crudButtons__button}>
             <FontAwesomeIcon icon={faEdit} size={27} />
@@ -32,7 +32,7 @@ const Note = ({ note, index, setEditNote, deleteNote }) => {
                 text: "Cancelar",
                 style: "cancel",
               },
-              { text: "Borrar", onPress: () => deleteNote({ id: note._id }) },
+              { text: "Borrar", onPress: () => deleteNote({ id: note.id }) },
             ])
           }>
           <Text style={styles.note__crudButtons__button}>

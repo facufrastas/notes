@@ -7,7 +7,6 @@ const mapStateToProps = (state) => ({
   notes: state.notesReducer.notes,
   loading: state.notesReducer.loading,
   editNote: state.notesReducer.editNote,
-  idEditNote: state.notesReducer.idEditNote,
 });
 
 const mapDispatchToProps = (dispatch) => ({

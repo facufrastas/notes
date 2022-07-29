@@ -5,7 +5,6 @@ const initState = {
   loading: false,
   newNote: "",
   editNote: "",
-  idEditNote: null,
 };
 
 const notesReducer = (state = initState, action) => {
@@ -17,10 +16,9 @@ const notesReducer = (state = initState, action) => {
     case SET_NEW_NOTE:
       return { ...state, newNote: action.data };
     case SET_EDIT_NOTE:
-      const { editNote, id } = action.data;
-      return { ...state, editNote: editNote, idEditNote: id };
+      return { ...state, editNote: action.data };
     case DELETE_EDIT_NOTE:
-      return { ...state, editNote: "", idEditNote: null };
+      return { ...state, editNote: "" };
     default:
       return { ...state };
   }

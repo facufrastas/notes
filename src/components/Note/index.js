@@ -5,7 +5,7 @@ import Note from "./Note";
 
 const mapDispatchToProps = (dispatch) => ({
   deleteNote: ({ id }) => deleteNote({ dispatch, id }),
-  setEditNote: ({ id, editNote }) => setEditNote({ dispatch, id, editNote }),
+  setEditNote: ({ editNote }) => setEditNote({ dispatch, editNote }),
 });
 
 export default connect(null, mapDispatchToProps)(Note);
