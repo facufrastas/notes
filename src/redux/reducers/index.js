@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import notesMabelReducer from "./notesMabel";
+import notesReducer from "./notes";
 
 const reducers = combineReducers({
-  notesMabelReducer,
+  notesReducer,
 });
 
 export default reducers;

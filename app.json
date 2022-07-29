@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Mabel Notes",
-    "slug": "mabel-notes",
+    "name": "Notes",
+    "slug": "notes",
     "icon": "./src/assets/Icon.png",
     "ios": {
-      "bundleIdentifier": "com.mabelNotes.app",
+      "bundleIdentifier": "com.notes.app",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.mabelNotes.app",
+      "package": "com.notes.app",
       "versionCode": 1
     },
     "plugins": [

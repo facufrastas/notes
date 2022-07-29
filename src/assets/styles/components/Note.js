@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  noteMabel: {
+  note: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
@@ -9,7 +9,7 @@ export default StyleSheet.create({
     borderRadius: 20,
     marginVertical: 15,
   },
-  noteMabel__content: {
+  note__content: {
     paddingVertical: 10,
     paddingLeft: 10,
     paddingRight: 17,
@@ -20,13 +20,13 @@ export default StyleSheet.create({
     fontSize: 20,
     width: "80%",
   },
-  noteMabel__crudButtons: {
+  note__crudButtons: {
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
     width: "20%",
   },
-  noteMabel__crudButtons__button: {
+  note__crudButtons__button: {
     padding: 10,
     marginVertical: 10,
     marginHorizontal: 5,

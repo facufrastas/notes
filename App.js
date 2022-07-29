@@ -9,7 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 
-import NotesMabel from "./src/activities/NotesMabel";
+import Notes from "./src/activities/Notes";
 import Loading from "./src/components/Loading";
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
         <PersistGate persistor={persistor} loading={<Loading />}>
           <View style={styles.container}>
             <Stack.Navigator
-              initialRouteName="NotesMabel"
+              initialRouteName="Notes"
               screenOptions={{
                 headerTitleAlign: "center",
                 headerStyle: {
@@ -32,10 +32,10 @@ export default function App() {
                 },
               }}>
               <Stack.Screen
-                name="NotesMabel"
-                component={NotesMabel}
+                name="Notes"
+                component={Notes}
                 options={{
-                  title: "Notes Mabel",
+                  title: "Notes",
                 }}
               />
             </Stack.Navigator>

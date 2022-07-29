@@ -1,14 +1,14 @@
-import { GET_NOTES, GET_NOTES_SUCCESSFULLY, SET_NEW_NOTE, SET_EDIT_NOTE, DELETE_EDIT_NOTE } from '../../actions/notes';
+import { GET_NOTES, GET_NOTES_SUCCESSFULLY, SET_NEW_NOTE, SET_EDIT_NOTE, DELETE_EDIT_NOTE } from "../../actions/notes";
 
 const initState = {
   notes: [],
   loading: false,
-  newNote: '',
-  editNote: '',
+  newNote: "",
+  editNote: "",
   idEditNote: null,
 };
 
-const notesMabelReducer = (state = initState, action) => {
+const notesReducer = (state = initState, action) => {
   switch (action.type) {
     case GET_NOTES:
       return { ...state, loading: true };
@@ -20,10 +20,10 @@ const notesMabelReducer = (state = initState, action) => {
       const { editNote, id } = action.data;
       return { ...state, editNote: editNote, idEditNote: id };
     case DELETE_EDIT_NOTE:
-      return { ...state, editNote: '', idEditNote: null };
+      return { ...state, editNote: "", idEditNote: null };
     default:
       return { ...state };
   }
 };
 
-export default notesMabelReducer;
+export default notesReducer;

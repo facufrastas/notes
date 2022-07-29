@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { View, TextInput, ScrollView, ActivityIndicator, Text, ToastAndroid, RefreshControl } from "react-native";
 import AppButton from "../../components/AppButton";
-import NoteMabel from "../../components/NoteMabel";
+import Note from "../../components/Note";
 import { useIsFocused } from "@react-navigation/native";
-import styles from "../../assets/styles/activities/NotesMabel";
+import styles from "../../assets/styles/activities/Notes";
 
-const NotesMabel = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, setNewNote, editNote, idEditNote, unsetEditNote, searchNote }) => {
+const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, setNewNote, editNote, idEditNote, unsetEditNote, searchNote }) => {
   const isFocused = useIsFocused();
 
   // Update list (Get) after a Post, Put or Delete of a note
@@ -47,23 +47,23 @@ const NotesMabel = ({ notes, getNotes, postNote, deleteNote, updateNote, loading
   };
 
   return (
-    <ScrollView style={styles.notesMabel} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-      <View style={styles.notesMabel__contentCenter}>
-        <Text style={styles.notesMabel__title}>Buscar Nota</Text>
-        <View style={styles.notesMabel__inputBar}>
-          <TextInput style={styles.notesMabel__inputBar__text} onChangeText={setSearchNoteInput} value={searchNoteInput} placeholder={"Ingresá la nota a buscar"} />
+    <ScrollView style={styles.notes} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+      <View style={styles.notes__contentCenter}>
+        <Text style={styles.notes__title}>Buscar Nota</Text>
+        <View style={styles.notes__inputBar}>
+          <TextInput style={styles.notes__inputBar__text} onChangeText={setSearchNoteInput} value={searchNoteInput} placeholder={"Ingresá la nota a buscar"} />
           {searchNoteInput?.length > 0 && (
-            <Text style={styles.notesMabel__inputBar__textDelete} onPress={() => setSearchNoteInput("")}>
+            <Text style={styles.notes__inputBar__textDelete} onPress={() => setSearchNoteInput("")}>
               X
             </Text>
           )}
         </View>
-        <View style={styles.notesMabel__contentCenter}>
-          <View style={styles.notesMabel__horizontalAlign}>
-            <View style={styles.notesMabel__extraMarginButton}>
+        <View style={styles.notes__contentCenter}>
+          <View style={styles.notes__horizontalAlign}>
+            <View style={styles.notes__extraMarginButton}>
               <AppButton title={"Buscar"} onPress={() => searchNote({ noteString: searchNoteInput })} />
             </View>
-            <View style={styles.notesMabel__extraMarginButton}>
+            <View style={styles.notes__extraMarginButton}>
               <AppButton
                 title={"CBU"}
                 onPress={() => {
@@ -71,7 +71,7 @@ const NotesMabel = ({ notes, getNotes, postNote, deleteNote, updateNote, loading
                 }}
               />
             </View>
-            <View style={styles.notesMabel__extraMarginButton}>
+            <View style={styles.notes__extraMarginButton}>
               <AppButton
                 title={"Todas las Notas"}
                 onPress={() => {
@@ -83,12 +83,12 @@ const NotesMabel = ({ notes, getNotes, postNote, deleteNote, updateNote, loading
             </View>
           </View>
         </View>
-        <Text style={styles.notesMabel__title}>Agregar Nota</Text>
-        <View style={styles.notesMabel__inputBar}>
-          <TextInput style={styles.notesMabel__inputBar__text} placeholder="Escribí la nueva nota" onChangeText={setNote} value={note} onPress={() => setNewNote(note)} />
+        <Text style={styles.notes__title}>Agregar Nota</Text>
+        <View style={styles.notes__inputBar}>
+          <TextInput style={styles.notes__inputBar__text} placeholder="Escribí la nueva nota" onChangeText={setNote} value={note} onPress={() => setNewNote(note)} />
           {note?.length > 0 && (
             <Text
-              style={styles.notesMabel__inputBar__textDelete}
+              style={styles.notes__inputBar__textDelete}
               onPress={() => {
                 setNote("");
                 unsetEditNote();
@@ -97,7 +97,7 @@ const NotesMabel = ({ notes, getNotes, postNote, deleteNote, updateNote, loading
             </Text>
           )}
         </View>
-        <View style={styles.notesMabel__extraMargin}>
+        <View style={styles.notes__extraMargin}>
           {editNote && note ? (
             <AppButton
               title={"Cancelar"}
@@ -126,18 +126,18 @@ const NotesMabel = ({ notes, getNotes, postNote, deleteNote, updateNote, loading
         notes && notes.length > 0 ? (
           !showFavourites ? (
             notes.filter((note) => !note.favourite).length > 0 ? (
-              notes.filter((note) => !note.favourite).map((note, index) => <NoteMabel key={index} note={note} index={index} />)
+              notes.filter((note) => !note.favourite).map((note, index) => <Note key={index} note={note} index={index} />)
             ) : (
-              <View style={styles.notesMabel__contentCenter}>
-                <Text style={styles.notesMabel__title}>No hay Notas</Text>
+              <View style={styles.notes__contentCenter}>
+                <Text style={styles.notes__title}>No hay Notas</Text>
               </View>
             )
           ) : (
-            notes.filter((note) => note.favourite).map((note, index) => <NoteMabel key={index} note={note} index={index} />)
+            notes.filter((note) => note.favourite).map((note, index) => <Note key={index} note={note} index={index} />)
           )
         ) : (
-          <View style={styles.notesMabel__contentCenter}>
-            <Text style={styles.notesMabel__title}>No hay Resultados</Text>
+          <View style={styles.notes__contentCenter}>
+            <Text style={styles.notes__title}>No hay Resultados</Text>
           </View>
         )
       ) : (
@@ -147,4 +147,4 @@ const NotesMabel = ({ notes, getNotes, postNote, deleteNote, updateNote, loading
   );
 };
 
-export default NotesMabel;
+export default Notes;

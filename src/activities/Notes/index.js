@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
-import { getNotes, postNote, updateNote, setNewNote, unsetEditNote, searchNote } from "../../api/notesMabel";
+import { getNotes, postNote, updateNote, setNewNote, unsetEditNote, searchNote } from "../../api/notes";
 
-import NotesMabel from "./NotesMabel";
+import Notes from "./Notes";
 
 const mapStateToProps = (state) => ({
-  notes: state.notesMabelReducer.notes,
-  loading: state.notesMabelReducer.loading,
-  editNote: state.notesMabelReducer.editNote,
-  idEditNote: state.notesMabelReducer.idEditNote,
+  notes: state.notesReducer.notes,
+  loading: state.notesReducer.loading,
+  editNote: state.notesReducer.editNote,
+  idEditNote: state.notesReducer.idEditNote,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch) => ({
   searchNote: ({ noteString }) => searchNote({ dispatch, noteString }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotesMabel);
+export default connect(mapStateToProps, mapDispatchToProps)(Notes);
