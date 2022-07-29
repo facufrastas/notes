@@ -1,33 +1,24 @@
 {
   "expo": {
-    "name": "mabelNotes",
-    "slug": "mabelNotes",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "name": "Mabel Notes",
+    "slug": "mabel-notes",
+    "icon": "./src/assets/Icon.png",
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.mabelNotes.app",
+      "buildNumber": "1.0.0"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+      "package": "com.mabelNotes.app",
+      "versionCode": 1
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./src/assets/notificationsIcon.png",
+          "color": "#ffffff"
+        }
+      ]
+    ]
   }
 }
