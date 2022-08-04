@@ -2,26 +2,34 @@ import React from "react";
 import { View, Text, TouchableOpacity, Alert, ToastAndroid } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrashAlt, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import styles from "../../assets/styles/components/Note";
 
-const Note = ({ note, index, setEditNote, deleteNote }) => {
+const Note = ({ note, index, setEditNote, deleteNote, setDone }) => {
   const copyToClipboard = () => {
     Clipboard.setString(note?.note);
     ToastAndroid.show("¡Texto copiado exitosamente!", ToastAndroid.SHORT);
   };
 
   return (
-    <View style={styles.note} key={index}>
-      <Text style={styles.note__content} onPress={copyToClipboard}>
-        {index + 1} - {note.note} {note.favourite ? " - ★" : null}
+    <View style={[!note.important ? styles.note : styles.note__important]} key={index}>
+      <Text style={[!note.important ? styles.note__content : styles.note__content__important, note.done && styles.note__content__done]} onPress={copyToClipboard}>
+        {index + 1} - {note.note}
       </Text>
       <View style={styles.note__crudButtons}>
         <TouchableOpacity
           onPress={() => {
+            setDone({ id: note.id });
+          }}>
+          <Text style={[!note.important ? styles.note__crudButtons__button : styles.note__crudButtons__button__important]}>
+            <FontAwesomeIcon icon={faCheckCircle} size={27} />
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
             setEditNote({ editNote: note });
           }}>
-          <Text style={styles.note__crudButtons__button}>
+          <Text style={[!note.important ? styles.note__crudButtons__button : styles.note__crudButtons__button__important]}>
             <FontAwesomeIcon icon={faEdit} size={27} />
           </Text>
         </TouchableOpacity>
@@ -35,7 +43,7 @@ const Note = ({ note, index, setEditNote, deleteNote }) => {
               { text: "Borrar", onPress: () => deleteNote({ id: note.id }) },
             ])
           }>
-          <Text style={styles.note__crudButtons__button}>
+          <Text style={[!note.important ? styles.note__crudButtons__button : styles.note__crudButtons__button__important]}>
             <FontAwesomeIcon icon={faTrashAlt} size={27} />
           </Text>
         </TouchableOpacity>

@@ -11,8 +11,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getNotes: () => getNotes(dispatch),
-  postNote: ({ note, favourite }) => postNote({ dispatch, note, favourite }),
-  updateNote: ({ id, note, favourite }) => updateNote({ dispatch, id, note, favourite }),
+  postNote: ({ note, important }) => postNote({ dispatch, note, important }),
+  updateNote: ({ id, note, important, done }) => updateNote({ dispatch, id, note, important, done }),
   setNewNote: ({ newNote }) => setNewNote({ dispatch, newNote }),
   unsetEditNote: () => unsetEditNote(dispatch),
   searchNote: ({ noteString }) => searchNote({ dispatch, noteString }),

@@ -24,7 +24,6 @@ export const searchNote = async ({ dispatch, noteString }) => {
     }
     dispatch({ type: GET_NOTES });
     const response = notesJSON.filter((note) => note.note.toLowerCase().includes(noteString.toLowerCase()));
-    console.log(response);
     dispatch({ type: GET_NOTES_SUCCESSFULLY, data: response });
     return;
   } catch (err) {
@@ -32,7 +31,7 @@ export const searchNote = async ({ dispatch, noteString }) => {
   }
 };
 
-export const postNote = async ({ dispatch, note, favourite }) => {
+export const postNote = async ({ dispatch, note, important }) => {
   try {
     const notes = await AsyncStorage.getItem("notes");
     let notesJSON;
@@ -42,7 +41,7 @@ export const postNote = async ({ dispatch, note, favourite }) => {
     } else {
       notesJSON = JSON.parse(notes);
     }
-    notesJSON.push({ id: notesJSON.length === 0 ? 0 : notesJSON.length + 1, note, favourite });
+    notesJSON.push({ id: notesJSON.length === 0 ? 0 : notesJSON.length + 1, note, important, done: false });
     await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     getNotes(dispatch);
     return;
@@ -76,7 +75,7 @@ export const deleteNote = async ({ dispatch, id }) => {
   }
 };
 
-export const updateNote = async ({ dispatch, id, note, favourite }) => {
+export const updateNote = async ({ dispatch, id, note, important, done }) => {
   try {
     const notes = await AsyncStorage.getItem("notes");
     let notesJSON;
@@ -88,9 +87,30 @@ export const updateNote = async ({ dispatch, id, note, favourite }) => {
     }
     const index = notesJSON.findIndex((note) => note.id === id);
     notesJSON[index].note = note;
-    notesJSON[index].favourite = favourite;
+    notesJSON[index].important = important;
+    notesJSON[index].done = done;
     await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     unsetEditNote(dispatch);
+    getNotes(dispatch);
+    return;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const setDone = async ({ dispatch, id }) => {
+  try {
+    const notes = await AsyncStorage.getItem("notes");
+    let notesJSON;
+
+    if (!notes) {
+      notesJSON = [];
+    } else {
+      notesJSON = JSON.parse(notes);
+    }
+    const index = notesJSON.findIndex((note) => note.id === id);
+    notesJSON[index].done = !notesJSON[index].done;
+    await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     getNotes(dispatch);
     return;
   } catch (err) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, TextInput, ScrollView, ActivityIndicator, Text, ToastAndroid, RefreshControl } from "react-native";
+import { View, TextInput, ScrollView, ActivityIndicator, Text, ToastAndroid, RefreshControl, Switch } from "react-native";
 import AppButton from "../../components/AppButton";
 import Note from "../../components/Note";
 import { useIsFocused } from "@react-navigation/native";
@@ -23,13 +23,12 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
 
   // Update 'editNote' value after every key press
   useEffect(() => {
-    setNote(editNote.note), setFavourite(editNote.favourite ? editNote.favourite : false);
+    setNote(editNote.note), setImportant(editNote.important ? editNote.important : false);
   }, [editNote]);
 
   const [note, setNote] = useState("");
   const [searchNoteInput, setSearchNoteInput] = useState("");
-  const [favourite, setFavourite] = useState(false);
-  const [showFavourites, setShowFavourites] = useState(false);
+  const [important, setImportant] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
   const scrollRef = useRef();
@@ -67,21 +66,12 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
             <View style={styles.notes__extraMarginButton}>
               <AppButton title={"Buscar"} onPress={() => searchNote({ noteString: searchNoteInput })} />
             </View>
-            {/* <View style={styles.notes__extraMarginButton}>
-              <AppButton
-                title={"CBU"}
-                onPress={() => {
-                  setShowFavourites(true);
-                }}
-              />
-            </View> */}
             <View style={styles.notes__extraMarginButton}>
               <AppButton
                 title={"Todas las Notas"}
                 onPress={() => {
                   getNotes();
                   setSearchNoteInput("");
-                  setShowFavourites(false);
                 }}
               />
             </View>
@@ -101,6 +91,10 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
             </Text>
           )}
         </View>
+        <View style={styles.notes__horizontalAlign}>
+          <Text style={styles.notes__title}>Importante</Text>
+          <Switch trackColor={{ false: "#767577", true: "#f8d533" }} thumbColor={"#f8d533"} onValueChange={setImportant} value={important} style={styles.notes__switchButton} />
+        </View>
         <View style={styles.notes__extraMargin}>
           {editNote && note ? (
             <AppButton
@@ -111,13 +105,13 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
               }}
             />
           ) : null}
-          {editNote && note ? <AppButton title={"Guardar Cambios"} onPress={() => updateNote({ id: editNote.id, note, favourite }).then(setNote("")).then(setFavourite(false))} /> : null}
+          {editNote && note ? <AppButton title={"Guardar Cambios"} onPress={() => updateNote({ id: editNote.id, note, important, done: editNote.done }).then(setNote("")).then(setImportant(false))} /> : null}
           {editNote && editNote.note && editNote.note.length > 0 ? null : (
             <AppButton
               title={"Agregar Nota"}
               onPress={() => {
                 if (note && note.length > 0) {
-                  postNote({ note, favourite }).then(setNote("")).then(setFavourite(false));
+                  postNote({ note, important }).then(setNote("")).then(setImportant(false));
                 } else {
                   ToastAndroid.show("¡No podés agregar una nota vacía!", ToastAndroid.SHORT);
                 }
@@ -128,17 +122,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
       </View>
       {!loading ? (
         notes && notes.length > 0 ? (
-          !showFavourites ? (
-            notes.filter((note) => !note.favourite).length > 0 ? (
-              notes.filter((note) => !note.favourite).map((note, index) => <Note key={index} note={note} index={index} />)
-            ) : (
-              <View style={styles.notes__contentCenter}>
-                <Text style={styles.notes__title}>No hay Notas</Text>
-              </View>
-            )
-          ) : (
-            notes.filter((note) => note.favourite).map((note, index) => <Note key={index} note={note} index={index} />)
-          )
+          notes.sort((a, b) => b.important - a.important).map((note, index) => <Note key={index} note={note} index={index} />)
         ) : (
           <View style={styles.notes__contentCenter}>
             <Text style={styles.notes__title}>No hay Resultados</Text>
