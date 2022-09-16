@@ -1,6 +1,6 @@
 # React Native Notes App
 
-** This app was tested only on Android devices **
+**This app was tested only on Android devices**
 
 App to manage notes. It allows to create/edit and delete notes. saving them on the phone's storage.
 
