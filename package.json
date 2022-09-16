@@ -26,8 +26,7 @@
     "react-native-gesture-handler": "~2.2.1",
     "react-native-web": "0.17.7",
     "react-redux": "^8.0.2",
-    "redux-persist": "^6.0.0",
-    "undefined": "redux-persist/integration/react"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

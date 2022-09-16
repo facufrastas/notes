@@ -93,7 +93,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
         </View>
         <View style={styles.notes__horizontalAlign}>
           <Text style={styles.notes__title}>Importante</Text>
-          <Switch trackColor={{ false: "#767577", true: "#f8d533" }} thumbColor={"#f8d533"} onValueChange={setImportant} value={important} style={styles.notes__switchButton} />
+          <Switch trackColor={{ false: "#767577", true: "#f8d533" }} thumbColor={"#f8d533"} onValueChange={setImportant} value={important} />
         </View>
         <View style={styles.notes__extraMargin}>
           {editNote && note ? (
