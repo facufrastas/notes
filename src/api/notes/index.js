@@ -1,11 +1,14 @@
-import { GET_NOTES, GET_NOTES_SUCCESSFULLY, SET_NEW_NOTE, SET_EDIT_NOTE, DELETE_EDIT_NOTE } from "../../redux/actions/notes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { GET_NOTES, GET_NOTES_SUCCESSFULLY, SET_NEW_NOTE, SET_EDIT_NOTE, DELETE_EDIT_NOTE } from "../../redux/actions/notes";
 
 export const getNotes = async (dispatch) => {
   try {
     dispatch({ type: GET_NOTES });
     const response = await AsyncStorage.getItem("notes");
+
     dispatch({ type: GET_NOTES_SUCCESSFULLY, data: JSON.parse(response) });
+
     return;
   } catch (err) {
     console.error(err);
@@ -24,7 +27,9 @@ export const searchNote = async ({ dispatch, noteString }) => {
     }
     dispatch({ type: GET_NOTES });
     const response = notesJSON.filter((note) => note.note.toLowerCase().includes(noteString.toLowerCase()));
+
     dispatch({ type: GET_NOTES_SUCCESSFULLY, data: response });
+
     return;
   } catch (err) {
     console.error(err);
@@ -44,6 +49,7 @@ export const postNote = async ({ dispatch, note, important }) => {
     notesJSON.push({ id: notesJSON.length === 0 ? 0 : notesJSON.length + 1, note, important, done: false });
     await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     getNotes(dispatch);
+
     return;
   } catch (err) {
     console.error(err);
@@ -61,6 +67,7 @@ export const deleteNote = async ({ dispatch, id }) => {
       notesJSON = JSON.parse(notes);
     }
     const index = notesJSON.findIndex((note) => note.id === id);
+
     if (!isNaN(index) && notesJSON.length > 1) {
       notesJSON.splice(index, 1);
     } else if (notesJSON.length === 1) {
@@ -69,6 +76,7 @@ export const deleteNote = async ({ dispatch, id }) => {
 
     await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     getNotes(dispatch);
+
     return;
   } catch (err) {
     console.error(err);
@@ -86,12 +94,14 @@ export const updateNote = async ({ dispatch, id, note, important, done }) => {
       notesJSON = JSON.parse(notes);
     }
     const index = notesJSON.findIndex((note) => note.id === id);
+
     notesJSON[index].note = note;
     notesJSON[index].important = important;
     notesJSON[index].done = done;
     await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     unsetEditNote(dispatch);
     getNotes(dispatch);
+
     return;
   } catch (err) {
     console.error(err);
@@ -109,9 +119,11 @@ export const setDone = async ({ dispatch, id }) => {
       notesJSON = JSON.parse(notes);
     }
     const index = notesJSON.findIndex((note) => note.id === id);
+
     notesJSON[index].done = !notesJSON[index].done;
     await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     getNotes(dispatch);
+
     return;
   } catch (err) {
     console.error(err);

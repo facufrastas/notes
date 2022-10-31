@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { View, TextInput, ScrollView, ActivityIndicator, Text, ToastAndroid, RefreshControl, Switch } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
+
 import AppButton from "../../components/AppButton";
 import Note from "../../components/Note";
-import { useIsFocused } from "@react-navigation/native";
 import styles from "../../assets/styles/activities/Notes";
 
 const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, setNewNote, editNote, unsetEditNote, searchNote }) => {
@@ -10,7 +11,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
 
   useEffect(() => {
     getNotes();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Update list (Get) after a Post, Put or Delete of a note
   useEffect(() => {
@@ -19,7 +20,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
     if (isFocused) {
       getNotes();
     }
-  }, [postNote, deleteNote, updateNote, isFocused]);
+  }, [postNote, deleteNote, updateNote, isFocused]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Update 'editNote' value after every key press
   useEffect(() => {
@@ -39,7 +40,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
         y: 0,
         animated: true,
       }),
-    [editNote],
+    [editNote]
   );
 
   const onRefresh = () => {
@@ -50,11 +51,11 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
   };
 
   return (
-    <ScrollView style={styles.notes} ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+    <ScrollView ref={scrollRef} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} style={styles.notes}>
       <View style={styles.notes__contentCenter}>
         <Text style={styles.notes__title}>Buscar Nota</Text>
         <View style={styles.notes__inputBar}>
-          <TextInput style={styles.notes__inputBar__text} onChangeText={setSearchNoteInput} value={searchNoteInput} placeholder={"Ingresá la nota a buscar"} />
+          <TextInput placeholder={"Ingresá la nota a buscar"} style={styles.notes__inputBar__text} value={searchNoteInput} onChangeText={setSearchNoteInput} />
           {searchNoteInput?.length > 0 && (
             <Text style={styles.notes__inputBar__textDelete} onPress={() => setSearchNoteInput("")}>
               X
@@ -79,7 +80,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
         </View>
         <Text style={styles.notes__title}>Agregar Nota</Text>
         <View style={styles.notes__inputBar}>
-          <TextInput style={styles.notes__inputBar__text} placeholder="Escribí la nueva nota" onChangeText={setNote} value={note} onPress={() => setNewNote(note)} />
+          <TextInput placeholder="Escribí la nueva nota" style={styles.notes__inputBar__text} value={note} onChangeText={setNote} onPress={() => setNewNote(note)} />
           {note?.length > 0 && (
             <Text
               style={styles.notes__inputBar__textDelete}
@@ -93,7 +94,7 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
         </View>
         <View style={styles.notes__horizontalAlign}>
           <Text style={styles.notes__title}>Importante</Text>
-          <Switch trackColor={{ false: "#767577", true: "#f8d533" }} thumbColor={"#f8d533"} onValueChange={setImportant} value={important} />
+          <Switch thumbColor={"#f8d533"} trackColor={{ false: "#767577", true: "#f8d533" }} value={important} onValueChange={setImportant} />
         </View>
         <View style={styles.notes__extraMargin}>
           {editNote && note ? (
@@ -122,14 +123,14 @@ const Notes = ({ notes, getNotes, postNote, deleteNote, updateNote, loading, set
       </View>
       {!loading ? (
         notes && notes.length > 0 ? (
-          notes.sort((a, b) => b.important - a.important).map((note, index) => <Note key={index} note={note} index={index} />)
+          notes.sort((a, b) => b.important - a.important).map((note, index) => <Note key={index} index={index} note={note} />)
         ) : (
           <View style={styles.notes__contentCenter}>
             <Text style={styles.notes__title}>No hay Resultados</Text>
           </View>
         )
       ) : (
-        <ActivityIndicator size="large" color="#f8d533" />
+        <ActivityIndicator color="#f8d533" size="large" />
       )}
     </ScrollView>
   );
