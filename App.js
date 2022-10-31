@@ -4,19 +4,19 @@ import { StyleSheet, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./store";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-const Stack = createNativeStackNavigator();
 
+import { store, persistor } from "./store";
 import Notes from "./src/activities/Notes";
 import Loading from "./src/components/Loading";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <PersistGate persistor={persistor} loading={<Loading />}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
           <View style={styles.container}>
             <Stack.Navigator
               initialRouteName="Notas"
@@ -32,8 +32,8 @@ export default function App() {
                 },
               }}>
               <Stack.Screen
-                name="Notas"
                 component={Notes}
+                name="Notas"
                 options={{
                   title: "Notas",
                 }}

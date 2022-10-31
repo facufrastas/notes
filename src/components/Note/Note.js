@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Alert, ToastAndroid } from "react-native"
 import * as Clipboard from "expo-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faEdit, faTrashAlt, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+
 import styles from "../../assets/styles/components/Note";
 
 const Note = ({ note, index, setEditNote, deleteNote, setDone }) => {
@@ -12,7 +13,7 @@ const Note = ({ note, index, setEditNote, deleteNote, setDone }) => {
   };
 
   return (
-    <View style={[!note.important ? styles.note : styles.note__important]} key={index}>
+    <View key={index} style={[!note.important ? styles.note : styles.note__important]}>
       <Text style={[!note.important ? styles.note__content : styles.note__content__important, note.done && styles.note__content__done]} onPress={copyToClipboard}>
         {index + 1} - {note.note}
       </Text>

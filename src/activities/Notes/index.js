@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+
 import { getNotes, postNote, updateNote, setNewNote, unsetEditNote, searchNote } from "../../api/notes";
 
 import Notes from "./Notes";
