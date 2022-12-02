@@ -1,4 +1,10 @@
-import { GET_NOTES, GET_NOTES_SUCCESSFULLY, SET_NEW_NOTE, SET_EDIT_NOTE, DELETE_EDIT_NOTE } from "../../actions/notes";
+import {
+  GET_NOTES,
+  GET_NOTES_SUCCESSFULLY,
+  SET_NEW_NOTE,
+  SET_EDIT_NOTE,
+  DELETE_EDIT_NOTE,
+} from "../../actions/notes";
 
 const initState = {
   notes: [],
