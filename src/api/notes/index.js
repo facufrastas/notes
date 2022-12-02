@@ -1,6 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { GET_NOTES, GET_NOTES_SUCCESSFULLY, SET_NEW_NOTE, SET_EDIT_NOTE, DELETE_EDIT_NOTE } from "../../redux/actions/notes";
+import {
+  GET_NOTES,
+  GET_NOTES_SUCCESSFULLY,
+  SET_NEW_NOTE,
+  SET_EDIT_NOTE,
+  DELETE_EDIT_NOTE,
+} from "../../redux/actions/notes";
 
 export const getNotes = async (dispatch) => {
   try {
@@ -26,7 +32,9 @@ export const searchNote = async ({ dispatch, noteString }) => {
       notesJSON = JSON.parse(notes);
     }
     dispatch({ type: GET_NOTES });
-    const response = notesJSON.filter((note) => note.note.toLowerCase().includes(noteString.toLowerCase()));
+    const response = notesJSON.filter((note) =>
+      note.note.toLowerCase().includes(noteString.toLowerCase())
+    );
 
     dispatch({ type: GET_NOTES_SUCCESSFULLY, data: response });
 
@@ -46,7 +54,12 @@ export const postNote = async ({ dispatch, note, important }) => {
     } else {
       notesJSON = JSON.parse(notes);
     }
-    notesJSON.push({ id: notesJSON.length === 0 ? 0 : notesJSON.length + 1, note, important, done: false });
+    notesJSON.push({
+      id: notesJSON.length === 0 ? 0 : notesJSON.length + 1,
+      note,
+      important,
+      done: false,
+    });
     await AsyncStorage.setItem("notes", JSON.stringify(notesJSON));
     getNotes(dispatch);
 
