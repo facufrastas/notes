@@ -80,7 +80,7 @@ const Notes = ({
       style={styles.notes}
     >
       <View style={styles.notes__contentCenter}>
-        <Text style={styles.notes__title}>Buscar Notaa</Text>
+        <Text style={styles.notes__title}>Buscar Nota</Text>
         <View style={styles.notes__inputBar}>
           <TextInput
             placeholder={"Ingresá la nota a buscar"}
