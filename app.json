@@ -2,24 +2,33 @@
   "expo": {
     "name": "Notes",
     "slug": "notes",
-    "owner": "facufrastas",
-    "icon": "./src/assets/Icon.png",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
     "ios": {
-      "bundleIdentifier": "com.notes.app",
-      "buildNumber": "1.0.0"
+      "bundleIdentifier": "com.facufrastas.notes"
     },
     "android": {
-      "package": "com.notes.app",
-      "versionCode": 1
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.facufrastas.notes",
+      "runtimeVersion": "1.0.0"
     },
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./src/assets/notificationsIcon.png",
-          "color": "#ffffff"
-        }
-      ]
-    ]
+    "extra": {
+      "eas": {
+        "projectId": "1dc19435-8d69-4f97-9ca1-35f1a8e06997"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1dc19435-8d69-4f97-9ca1-35f1a8e06997"
+    }
   }
 }
