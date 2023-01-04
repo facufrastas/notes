@@ -39,7 +39,7 @@ const Note = ({ note, index, setEditNote, deleteNote, setDone }) => {
         {index + 1} - {note.note}
       </Text>
       <View style={styles.note__crudButtons}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             setDone({ id: note.id });
           }}
@@ -53,7 +53,7 @@ const Note = ({ note, index, setEditNote, deleteNote, setDone }) => {
           >
             <FontAwesomeIcon icon={faCheckCircle} size={27} />
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             setEditNote({ editNote: note });
