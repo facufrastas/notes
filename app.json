@@ -1,8 +1,11 @@
 {
   "expo": {
     "name": "Notes",
+    "currentFullName": "@owner/slug",
+    "originalFullName": "@owner/slug",
     "slug": "notes",
     "version": "1.0.0",
+    "scheme": "com.facufrastas.notes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -12,7 +15,10 @@
       "backgroundColor": "#000000"
     },
     "ios": {
-      "bundleIdentifier": "com.facufrastas.notes"
+      "bundleIdentifier": "com.facufrastas.notes",
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -20,7 +26,9 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.facufrastas.notes",
-      "runtimeVersion": "1.0.0"
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "extra": {
       "eas": {
@@ -29,6 +37,9 @@
     },
     "updates": {
       "url": "https://u.expo.dev/1dc19435-8d69-4f97-9ca1-35f1a8e06997"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
