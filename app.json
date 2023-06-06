@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Notes",
+    "name": "Notes Manager",
     "currentFullName": "@owner/slug",
     "originalFullName": "@owner/slug",
     "slug": "notes",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "scheme": "com.facufrastas.notes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,8 @@
       "bundleIdentifier": "com.facufrastas.notes",
       "runtimeVersion": {
         "policy": "sdkVersion"
-      }
+      },
+      "buildNumber": "4"
     },
     "android": {
       "adaptiveIcon": {
