@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 export default StyleSheet.create({
   note: {
@@ -46,12 +46,12 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
-    width: "20%",
+    width: Platform.OS === 'android' ? "20%" : "10%",
   },
   note__crudButtons__button: {
-    paddingVertical: 10,
+    paddingVertical: Platform.OS === 'android' ? 10 : 0,
     paddingHorizontal: 3,
-    marginVertical: 10,
+    marginVertical: Platform.OS === 'android' ? 10 : 0,
     marginHorizontal: 5,
     borderRadius: 10,
     backgroundColor: "#f8d533",
@@ -59,9 +59,9 @@ export default StyleSheet.create({
     fontSize: 20,
   },
   note__crudButtons__button__important: {
-    paddingVertical: 10,
+    paddingVertical: Platform.OS === 'android' ? 10 : 0,
     paddingHorizontal: 3,
-    marginVertical: 10,
+    marginVertical: Platform.OS === 'android' ? 10 : 0,
     marginHorizontal: 5,
     borderRadius: 10,
     backgroundColor: "tomato",
