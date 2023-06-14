@@ -30,7 +30,6 @@
       "runtimeVersion": {
         "policy": "sdkVersion"
       },
-      "version": "1.0.2",
       "versionCode": 7
     },
     "extra": {
