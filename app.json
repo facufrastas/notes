@@ -30,7 +30,7 @@
       "runtimeVersion": {
         "policy": "sdkVersion"
       },
-      "versionCode": 9
+      "versionCode": 10
     },
     "extra": {
       "eas": {
