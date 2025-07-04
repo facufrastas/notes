@@ -4,7 +4,7 @@
     "currentFullName": "@owner/slug",
     "originalFullName": "@owner/slug",
     "slug": "notes",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "scheme": "com.facufrastas.notes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
       "runtimeVersion": {
         "policy": "sdkVersion"
       },
-      "buildNumber": "10"
+      "buildNumber": "11"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,7 +30,7 @@
       "runtimeVersion": {
         "policy": "sdkVersion"
       },
-      "versionCode": 10
+      "versionCode": 11
     },
     "extra": {
       "eas": {
