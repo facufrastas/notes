@@ -37,7 +37,7 @@ export const notesSlice = createSlice({
       state.edit = false;
     },
     setNewNote: (state, action: PayloadAction<INote>) => {
-      state.newNote = action.payload.note;
+      state.newNote = action?.payload?.note;
     },
     setEditNote: (state, action: PayloadAction<INote>) => {
       state.edit = true;

@@ -91,7 +91,7 @@ const Notes = () => {
         </View>
         <Text style={styles.notes__title}>Agregar Nota</Text>
         <View style={styles.notes__inputBar}>
-          <TextInput placeholder="Escribí la nueva nota" style={styles.notes__inputBar__text} value={note} onChangeText={setNote} onPress={() => dispatch(setNewNote(note))} />
+          <TextInput placeholder="Escribí la nueva nota" style={styles.notes__inputBar__text} value={note} onChangeText={setNote} onPress={() => dispatch(setNewNote({ note }))} />
           {note?.length > 0 && (
             <Text
               style={styles.notes__inputBar__textDelete}
