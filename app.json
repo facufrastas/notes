@@ -4,7 +4,7 @@
     "currentFullName": "@owner/slug",
     "originalFullName": "@owner/slug",
     "slug": "notes",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "scheme": "com.facufrastas.notes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,7 @@
       "runtimeVersion": {
         "policy": "sdkVersion"
       },
-      "buildNumber": "12",
+      "buildNumber": "13",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -36,7 +36,7 @@
       "runtimeVersion": {
         "policy": "sdkVersion"
       },
-      "versionCode": 12
+      "versionCode": 13
     },
     "extra": {
       "eas": {
